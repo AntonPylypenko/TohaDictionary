@@ -2,61 +2,74 @@ package com.example.antonpylypenko;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ListActivity {
 
     private EditText pass;
     private Button btn;
 
     private String[] gairaigoWords = {
-            "アベック - romantic couple",
-            "アフターサービス - after service",
-            "アイドル - (teen) idol, pop star",
-            "アイス - ice, also used as a shortened form of ice cream",
-            "アイスクリーム - ice cream",
-            "アイゼン - crampons",
-            "アメフト - American football",
-            "アメリカンドッグ - corn dog",
-            "アニメ - animation, animated cartoons or films",
-            "アニソン - an anime song, most often the theme",
-            "アンケート - questionnaire, survey",
-            "アンニュイ - ennui, boredom",
-            "アンサー - reply to a question, solution to a problem",
-            "アンチ - hater, anti-fan",
-            "アパート - apartment (US), flat (UK), though apāto are usually in small two-story wood-structure buildings, not multistory complexes as in the US usage"}
+        "アベック",
+        "アフターサービス",
+        "アイドル",
+        "アイス",
+        "アイスクリーム",
+        "アイゼン",
+        "アメフト",
+        "アメリカンドッグ",
+        "アニメ",
+        "アニソン",
+        "アンケート",
+        "アンニュイ",
+        "アンサー",
+        "アンチ",
+        "アパート"};
 
+    private String[] garaigoTranslation = {
+        "romantic couple",
+        "after service",
+        "(teen) idol, pop star",
+        "ice, also used as a shortened form of ice cream",
+        "ice cream",
+        "crampons",
+        "American football",
+        "corn dog",
+        "animation, animated cartoons or films",
+        "an anime song, most often the theme",
+        "questionnaire, survey",
+        "ennui, boredom",
+        "reply to a question, solution to a problem",
+        "hater, anti-fan",
+        "apartment (US), flat (UK), though apāto are usually in small two-story wood-structure buildings, not multistory complexes as in the US usage",
 
+    };
+
+    private ArrayAdapter<String> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        mAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, gairaigoWords);
+        setListAdapter(mAdapter);
     }
-
-
-    //Create and set up adapter
-    ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, players)
-    setListAdapter(adapter);
 
     @Override
-    protected void onListItemClick(ListView l, View v, int position, long id){
-        android.widget.Toast.makeText(this, getListView().getItemAtPosition(position).toString());
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Toast.makeText(getApplicationContext(),
+                "Translation " + garaigoTranslation[position], Toast.LENGTH_SHORT).show();
     }
 
-
-    public void addListenerOnButton(){
-        pass = (EditText) findViewById(R.id.editText);
-        btn = (Button)findViewById(R.id.button);
-        btn.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-
-        }
-        );
-    }
 
 }
