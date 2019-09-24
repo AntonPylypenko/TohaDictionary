@@ -2,22 +2,22 @@ package com.example.antonpylypenko;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends ListActivity {
 
-    private EditText pass;
-    private Button btn;
+import org.w3c.dom.Text;
 
-    private String[] gairaigoWords = {
+import java.util.Arrays;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    private final String[] gairaigoWords = {
         "アベック",
         "アフターサービス",
         "アイドル",
@@ -460,7 +460,7 @@ public class MainActivity extends ListActivity {
         "ズボン"
     };
 
-    private String[] garaigoTranslation = {
+    private final String[] gairaigoTranslation = {
         "romantic couple",
         "after service",
         "(teen) idol, pop star",
@@ -902,22 +902,19 @@ public class MainActivity extends ListActivity {
         "trousers (British English), pants (American English)"
     };
 
-    private ArrayAdapter<String> mAdapter;
+    AutoCompleteTextView mAutoCompleteTextView;
+    TextView myTranslationText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        mAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, gairaigoWords);
-        setListAdapter(mAdapter);
-    }
+        myTranslationText = (TextView) findViewById(R.id.translationText);
+        mAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        Toast.makeText(getApplicationContext(),
-                "Translation " + garaigoTranslation[position], Toast.LENGTH_LONG).show();
+        mAutoCompleteTextView.setAdapter(new ArrayAdapter<>(this,
+                android.R.layout.simple_dropdown_item_1line, gairaigoTranslation));
     }
 
 
