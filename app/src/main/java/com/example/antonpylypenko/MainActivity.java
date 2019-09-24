@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -902,20 +904,35 @@ public class MainActivity extends AppCompatActivity {
         "trousers (British English), pants (American English)"
     };
 
-    AutoCompleteTextView mAutoCompleteTextView;
+    AutoCompleteTextView myAutoCompleteTextView;
     TextView myTranslationText;
+    Button myButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        final ArrayList<String> gairaigoWordsList = new ArrayList<>(Arrays.asList(gairaigoWords));
+        final ArrayList<String> gairaigoTranslationList = new ArrayList<>(Arrays.asList(gairaigoTranslation));
+
+
         myTranslationText = (TextView) findViewById(R.id.translationText);
-        mAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+        myAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
+        myButton = (Button) findViewById(R.id.button);
 
-        mAutoCompleteTextView.setAdapter(new ArrayAdapter<>(this,
+
+        myAutoCompleteTextView.setAdapter(new ArrayAdapter<>(this,
                 android.R.layout.simple_dropdown_item_1line, gairaigoTranslation));
+
+
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String word = myAutoCompleteTextView.getText().toString();
+                myTranslationText.setText(gairaigoWordsList.get(gairaigoTranslationList.indexOf(word)));
+            }
+        });
     }
-
-
 }

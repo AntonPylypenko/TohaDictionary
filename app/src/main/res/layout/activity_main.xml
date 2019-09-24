@@ -14,12 +14,17 @@
         android:completionThreshold="1"
         android:text="" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"/>
+
     <TextView
         android:id="@+id/translationText"
         android:layout_width="match_parent"
-        android:layout_height="683dp"
-        android:background = "#ffd700"
-        android:text="The word:"
-        />
+        android:layout_height="609dp"
+        android:background="#ffd700"
+        android:text="The word:" />
 
 </LinearLayout>
