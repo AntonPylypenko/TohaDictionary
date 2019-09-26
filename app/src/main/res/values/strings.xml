@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AntonPylypenko</string>
     <string name="button01">Button</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+
 </resources>
