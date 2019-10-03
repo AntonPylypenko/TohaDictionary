@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class ChangeDirection extends AppCompatActivity {
 /*
     String[] gairaigoWords = getResources().getStringArray(R.array.gairaigo_words);
     String[] gairaigoTranslations = getResources().getStringArray(R.array.gairaigo_translations);
@@ -940,7 +940,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickChangeDirection(View view) {
-        Intent intent = new Intent(this, ChangeDirection.class);
-        startActivity(intent);
+
     };
 }
